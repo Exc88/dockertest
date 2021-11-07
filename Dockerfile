@@ -1,14 +1,17 @@
-FROM golang:1.16-buster AS build
+# syntax=docker/dockerfile:1
+FROM golang:1.16-alpine
 
 WORKDIR /app
 
-# download the required Go dependencies
 COPY go.mod ./
-COPY go.sum ./
+#COPY go.sum ./
+
 RUN go mod download
-#COPY *.go ./
-COPY . ./
 
-RUN ls
+COPY *.go ./
 
-RUN go build -o myrepo-test .
+RUN go build -o /docker-gs-ping
+
+EXPOSE 8000
+
+CMD [ "/docker-gs-ping" ]
