@@ -1,4 +1,4 @@
-# docker-test
+# docker-test.
 
 To start run the following commands:
 
